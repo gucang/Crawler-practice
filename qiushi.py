@@ -10,8 +10,8 @@ class QSBK():
         self.page=1
         self.user_agent='Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.96 Safari/537.36'
         self.headers={'User-Agent' : self.user_agent}
-        self.stories=[] #存放段子的变量，每一个元素是每一页的段子们
-
+        self.stories=[] #存放段子的变量
+        
     def getPage(self,page): ####获取页面内容
         try:
             url = 'https://www.qiushibaike.com/text/page/' + str(page)
@@ -26,7 +26,7 @@ class QSBK():
 
     def getPageContent(self):  ###页面正则匹配，获取内容，（）内的内容注意下
         content=self.getPage(self.page)
-        if not content:    ###判断是否为none if content is not None 貌似不等价
+        if not content:    ###判断是否为none  if content is None 同
             print u'页面加载不出，请返回'
             return None
         pattern = re.compile(
@@ -57,4 +57,4 @@ spider = QSBK()
 spider.main()
 
 
-#待解决问题：1、读入内容为何只有第一个 2、翻页问题后续添入 
+#待解决问题：1、读入内容为何只有第一个 2、翻页问题后续添入 3、代码完善
